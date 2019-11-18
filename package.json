@@ -1,0 +1,17 @@
+{
+  "name": "kreuznaer",
+  "description": "lorem ipsum like it's 2019",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Udo Gerdes",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oezi/kreuznaer.git"
+  },
+  "files": [
+    "data/**/*",
+    "js/**/*",
+    "ts/**/*"
+  ]
+}

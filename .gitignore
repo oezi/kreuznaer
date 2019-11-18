@@ -1,0 +1,7 @@
+/dist
+/logs
+/node_modules
+/.idea
+npm-debug.log
+*.iml
+nbproject
