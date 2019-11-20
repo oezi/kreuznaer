@@ -11,7 +11,7 @@ import * as pfl from './data/pfl.json';
 import * as spa from './data/spa.json';
 import * as tur from './data/tur.json';
 
-const backreflength = 5;
+const backreflength = 4;
 const specialChars = ['.', '!', '?', ',', ':', '-', '–'];
 const data = {
   bar,
@@ -51,12 +51,16 @@ class Kreuznaer {
     return data[this.config];
   }
 
+  private randomEntry(arr: any[]) {
+    return arr?.[Math.floor(Math.random() * arr.length)];
+  }
+
   private generate(data = this.getData()) {
     let word = ' '.repeat(backreflength);
     let newchar = '';
     do {
       const key = word.substr(word.length - (backreflength), backreflength);
-      const dataEntry = data[key];
+      const dataEntry = data.words[key];
       newchar = '';
       if (dataEntry) {
         if (typeof dataEntry === 'string') {
@@ -123,10 +127,44 @@ class Kreuznaer {
     return sentence;
   }
 
-  private generateNickname(data = this.getData()) {
+  private generateName(gender?: 'm' | 'f', data = this.getData()) {
+    const male = gender ? gender === 'm' : Math.random() < 0.5;
+    if (male) {
+      if (data.maleNames?.length) {
+        return this.randomEntry(data.maleNames);
+      }
+    } else {
+      if (data.femaleNames?.length) {
+        return this.randomEntry(data.femaleNames);
+      }
+    }
     while (true) {
       const word = this.generateWord(data);
-      if (word[0] === word[0].toUpperCase()) {
+      if (word[0] === word[0].toUpperCase() && word.length >= 5) {
+        return word;
+      }
+    }
+  }
+
+  private generateFamilyName(data = this.getData()) {
+    if (data.familyNames?.length) {
+      return this.randomEntry(data.familyNames);
+    }
+    while (true) {
+      const word = this.generateWord(data);
+      if (word[0] === word[0].toUpperCase() && word.length >= 5) {
+        return word;
+      }
+    }
+  }
+
+  private generateNickName(data = this.getData()) {
+    if (data.nickNames?.length) {
+      return this.randomEntry(data.nickNames);
+    }
+    while (true) {
+      const word = this.generateWord(data);
+      if (word[0] === word[0].toUpperCase() && word.length >= 5) {
         return word;
       }
     }
@@ -140,8 +178,16 @@ class Kreuznaer {
     return this.generateSentence();
   }
 
-  public getNickname() {
-    return this.generateNickname();
+  public getName(gender?: 'm' | 'f') {
+    return this.generateName(gender);
+  }
+
+  public getFamilyName() {
+    return this.generateFamilyName();
+  }
+
+  public getNickName() {
+    return this.generateNickName();
   }
 }
 

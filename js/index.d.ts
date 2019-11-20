@@ -2,13 +2,18 @@ declare class Kreuznaer {
     private readonly config;
     constructor(config: 'bar' | 'deu' | 'eng' | 'fra' | 'gsw' | 'ksh' | 'lat' | 'nds' | 'nld' | 'pfl' | 'spa' | 'tur');
     private getData;
+    private randomEntry;
     private generate;
     private generateSomething;
     private generateWord;
     private generateSentence;
-    private generateNickname;
+    private generateName;
+    private generateFamilyName;
+    private generateNickName;
     getWord(): string;
     getSentence(): string;
-    getNickname(): string;
+    getName(gender?: 'm' | 'f'): any;
+    getFamilyName(): any;
+    getNickName(): any;
 }
 export default Kreuznaer;

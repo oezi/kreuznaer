@@ -12,7 +12,7 @@ var nld = require("./data/nld.json");
 var pfl = require("./data/pfl.json");
 var spa = require("./data/spa.json");
 var tur = require("./data/tur.json");
-var backreflength = 5;
+var backreflength = 4;
 var specialChars = ['.', '!', '?', ',', ':', '-', '–'];
 var data = {
     bar: bar,
@@ -36,13 +36,17 @@ var Kreuznaer = /** @class */ (function () {
     Kreuznaer.prototype.getData = function () {
         return data[this.config];
     };
+    Kreuznaer.prototype.randomEntry = function (arr) {
+        var _a;
+        return (_a = arr) === null || _a === void 0 ? void 0 : _a[Math.floor(Math.random() * arr.length)];
+    };
     Kreuznaer.prototype.generate = function (data) {
         if (data === void 0) { data = this.getData(); }
         var word = ' '.repeat(backreflength);
         var newchar = '';
         var _loop_1 = function () {
             var key = word.substr(word.length - (backreflength), backreflength);
-            var dataEntry = data[key];
+            var dataEntry = data.words[key];
             newchar = '';
             if (dataEntry) {
                 if (typeof dataEntry === 'string') {
@@ -112,11 +116,49 @@ var Kreuznaer = /** @class */ (function () {
         sentence = sentence[0].toUpperCase() + sentence.substring(1);
         return sentence;
     };
-    Kreuznaer.prototype.generateNickname = function (data) {
+    Kreuznaer.prototype.generateName = function (gender, data) {
         if (data === void 0) { data = this.getData(); }
+        var _a, _b;
+        var male = gender ? gender === 'm' : Math.random() < 0.5;
+        if (male) {
+            if ((_a = data.maleNames) === null || _a === void 0 ? void 0 : _a.length) {
+                return this.randomEntry(data.maleNames);
+            }
+        }
+        else {
+            if ((_b = data.femaleNames) === null || _b === void 0 ? void 0 : _b.length) {
+                return this.randomEntry(data.femaleNames);
+            }
+        }
         while (true) {
             var word = this.generateWord(data);
-            if (word[0] === word[0].toUpperCase()) {
+            if (word[0] === word[0].toUpperCase() && word.length >= 5) {
+                return word;
+            }
+        }
+    };
+    Kreuznaer.prototype.generateFamilyName = function (data) {
+        if (data === void 0) { data = this.getData(); }
+        var _a;
+        if ((_a = data.familyNames) === null || _a === void 0 ? void 0 : _a.length) {
+            return this.randomEntry(data.familyNames);
+        }
+        while (true) {
+            var word = this.generateWord(data);
+            if (word[0] === word[0].toUpperCase() && word.length >= 5) {
+                return word;
+            }
+        }
+    };
+    Kreuznaer.prototype.generateNickName = function (data) {
+        if (data === void 0) { data = this.getData(); }
+        var _a;
+        if ((_a = data.nickNames) === null || _a === void 0 ? void 0 : _a.length) {
+            return this.randomEntry(data.nickNames);
+        }
+        while (true) {
+            var word = this.generateWord(data);
+            if (word[0] === word[0].toUpperCase() && word.length >= 5) {
                 return word;
             }
         }
@@ -127,8 +169,14 @@ var Kreuznaer = /** @class */ (function () {
     Kreuznaer.prototype.getSentence = function () {
         return this.generateSentence();
     };
-    Kreuznaer.prototype.getNickname = function () {
-        return this.generateNickname();
+    Kreuznaer.prototype.getName = function (gender) {
+        return this.generateName(gender);
+    };
+    Kreuznaer.prototype.getFamilyName = function () {
+        return this.generateFamilyName();
+    };
+    Kreuznaer.prototype.getNickName = function () {
+        return this.generateNickName();
     };
     return Kreuznaer;
 }());
