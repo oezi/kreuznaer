@@ -1,6 +1,6 @@
 declare class Kreuznaer {
     private readonly config;
-    constructor(config: 'bar' | 'deu' | 'eng' | 'fra' | 'gsw' | 'ksh' | 'lat' | 'nds' | 'nld' | 'pfl' | 'spa' | 'tur');
+    constructor(config: 'deu' | 'eng');
     private getData;
     private randomEntry;
     private generate;

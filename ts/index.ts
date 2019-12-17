@@ -1,38 +1,38 @@
-import * as bar from './data/bar.json';
+// import * as bar from './data/bar.json';
 import * as deu from './data/deu.json';
 import * as eng from './data/eng.json';
-import * as fra from './data/fra.json';
-import * as gsw from './data/gsw.json';
-import * as ksh from './data/ksh.json';
-import * as lat from './data/lat.json';
-import * as nds from './data/nds.json';
-import * as nld from './data/nld.json';
-import * as pfl from './data/pfl.json';
-import * as spa from './data/spa.json';
-import * as tur from './data/tur.json';
+// import * as fra from './data/fra.json';
+// import * as gsw from './data/gsw.json';
+// import * as ksh from './data/ksh.json';
+// import * as lat from './data/lat.json';
+// import * as nds from './data/nds.json';
+// import * as nld from './data/nld.json';
+// import * as pfl from './data/pfl.json';
+// import * as spa from './data/spa.json';
+// import * as tur from './data/tur.json';
 
 const backreflength = 4;
 const specialChars = ['.', '!', '?', ',', ':', '-', '–'];
 const data = {
-  bar,
+  // bar,
   deu,
   eng,
-  fra,
-  gsw,
-  ksh,
-  lat,
-  nds,
-  nld,
-  pfl,
-  spa,
-  tur
+  // fra,
+  // gsw,
+  // ksh,
+  // lat,
+  // nds,
+  // nld,
+  // pfl,
+  // spa,
+  // tur
 };
 
 class Kreuznaer {
   private readonly config = null;
 
   constructor(config:
-                'bar'
+                /*'bar'
                 | 'deu'
                 | 'eng'
                 | 'fra'
@@ -43,7 +43,9 @@ class Kreuznaer {
                 | 'nld'
                 | 'pfl'
                 | 'spa'
-                | 'tur') {
+                | 'tur'*/
+                'deu' | 'eng'
+  ) {
     this.config = config;
   }
 

@@ -1,32 +1,23 @@
 "use strict";
 exports.__esModule = true;
-var bar = require("./data/bar.json");
+// import * as bar from './data/bar.json';
 var deu = require("./data/deu.json");
 var eng = require("./data/eng.json");
-var fra = require("./data/fra.json");
-var gsw = require("./data/gsw.json");
-var ksh = require("./data/ksh.json");
-var lat = require("./data/lat.json");
-var nds = require("./data/nds.json");
-var nld = require("./data/nld.json");
-var pfl = require("./data/pfl.json");
-var spa = require("./data/spa.json");
-var tur = require("./data/tur.json");
+// import * as fra from './data/fra.json';
+// import * as gsw from './data/gsw.json';
+// import * as ksh from './data/ksh.json';
+// import * as lat from './data/lat.json';
+// import * as nds from './data/nds.json';
+// import * as nld from './data/nld.json';
+// import * as pfl from './data/pfl.json';
+// import * as spa from './data/spa.json';
+// import * as tur from './data/tur.json';
 var backreflength = 4;
 var specialChars = ['.', '!', '?', ',', ':', '-', '–'];
 var data = {
-    bar: bar,
+    // bar,
     deu: deu,
-    eng: eng,
-    fra: fra,
-    gsw: gsw,
-    ksh: ksh,
-    lat: lat,
-    nds: nds,
-    nld: nld,
-    pfl: pfl,
-    spa: spa,
-    tur: tur
+    eng: eng
 };
 var Kreuznaer = /** @class */ (function () {
     function Kreuznaer(config) {
